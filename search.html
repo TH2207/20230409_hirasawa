@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<style>
+  ul {
+    margin: 0;
+    padding: 0;
+  }
+  input {
+    display: block;
+  }
+</style>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="keyword">
+    <table>
+      <ul v-for="name in search" :key="name">
+        <li>{{name}}</li>
+      </ul>
+    </table>
+  </div>
+  <script>
+    new Vue({
+      el: '#app',
+      data: {
+        keyword: '',
+        names: ['佐藤','山田','鈴木','田中']
+      },
+      computed: {
+        search: function() {
+          var names = [];
+          for(var i in this.names) {
+            var name = this.names[i];
+            if(name.indexOf(this.keyword) !== -1) {
+              names.push(name);
+            }
+          }
+          return names;
+        },
+      }
+    })
+  </script>
+</body>
+
+</html>
